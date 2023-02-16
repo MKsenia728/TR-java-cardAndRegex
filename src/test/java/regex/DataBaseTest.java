@@ -4,58 +4,73 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 
-import java.util.NoSuchElementException;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import regex.exceptions.NoSuchElement;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//@ExtendWith(MockitoExtension.class)
 class DataBaseTest {
+
     DataBase dataBase = new DataBase();
-    Card card1 = new Card(1111222233334444l, "Ivan","Ivanov", 123,01,25);
-    Card card2 = new Card(2222333344445555l, "Petr","Petrov", 345,05,26);
-    Card card3 = new Card(3333444455556666l, "Sidor","Sidorov", 333,10,26);
 
     @BeforeEach
     public void init() {
+        Card card1 = Mockito.mock(Card.class);
+        Card card2 = Mockito.mock(Card.class);
+        Card card3 = Mockito.mock(Card.class);
+
         dataBase.add(card1);
         dataBase.add(card2);
         dataBase.add(card3);
     }
 
-    @org.junit.jupiter.api.Test
-    void size() {
+    @Test
+    void sizeTest() {
+
         Assertions.assertEquals(3,dataBase.size(),"Check Size");
     }
 
-    @org.junit.jupiter.api.Test
-    void isEmpty() {
+    @Test
+    void isEmptyTest() {
         Assertions.assertFalse(false);
     }
 
-    @org.junit.jupiter.api.Test
-    void add() {
-        dataBase.add(new Card(3333444455557777l, "Ss","Ss", 333,10,26));
+    @Test
+    void addTest() {
+        Card cardTest = Mockito.mock(Card.class);
+        dataBase.add(cardTest);
         Assertions.assertEquals(4,dataBase.size(),"Check Add");
     }
 
-    @org.junit.jupiter.api.Test
-    void remove() {
-        dataBase.remove(card3);
-        Assertions.assertEquals(2,dataBase.size(),"Check remove");
+    @Test
+    void removeTest() throws NoSuchElement {
+        Card cardTest1 = Mockito.mock(Card.class);
+        Card cardTest2 = Mockito.mock(Card.class);
+        dataBase.add(cardTest1);
+        dataBase.add(cardTest2);
+        dataBase.remove(cardTest1);
+        Assertions.assertEquals(4,dataBase.size(),"Check remove");
     }
-    @org.junit.jupiter.api.Test
-    void removeException() {
-        assertThrows(NoSuchElementException.class, ()-> dataBase.remove(new Card(3333444455557777l, "Ss","Ss", 333,10,26)), "Removing with exception");
+    @Test
+    void removeExceptionTest() {
+        Card card = Mockito.mock(Card.class);
+        assertThrows(NoSuchElement.class, ()-> dataBase.remove(card), "Removing ");
     }
 
-
-    @org.junit.jupiter.api.Test
-    void clear() {
+    @Test
+    void clearTest() {
         dataBase.clear();
         Assertions.assertEquals(0,dataBase.size(),"Check clear");
     }
 
-    @org.junit.jupiter.api.Test
-    void getDataBaseCard() {
+    @Test
+    void getDataBaseCardTest() {
+        Assertions.assertEquals(3, dataBase.getDataBaseCard().size(), "Check getter");
     }
 
     @AfterEach

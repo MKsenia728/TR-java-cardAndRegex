@@ -1,10 +1,12 @@
 package regex;
 
+import regex.exceptions.NoSuchElement;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class DataBase {
-    private final List<Card> dataBaseCard;
+    private static List<Card> dataBaseCard;
 
     public DataBase() {
         this.dataBaseCard = new ArrayList<>();
@@ -18,10 +20,15 @@ public class DataBase {
     }
 
     public void add(Card card) {
+
         dataBaseCard.add(card);
+
     }
 
-    public void remove(Card card) {
+    public void remove(Card card) throws NoSuchElement {
+        if (!dataBaseCard.contains(card)) {
+            throw new NoSuchElement("There no such element");
+        }
         dataBaseCard.remove(card);
     }
 
