@@ -2,18 +2,14 @@ package regex;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.yaml.snakeyaml.parser.Parser;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class DataGenerateTest {
-    DataGenerate dataGenerate = new DataGenerate();
+class CardDataGeneratorTest {
+    CardDataGenerator dataGenerate = new CardDataGenerator();
 
     @RepeatedTest(name="Generate account", value=10)
     void generateAccountTest() {

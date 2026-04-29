@@ -5,21 +5,17 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import regex.exceptions.NoSuchElement;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-//@ExtendWith(MockitoExtension.class)
-class DataBaseTest {
+class CardRepositoryTest {
 
-    DataBase dataBase = new DataBase();
+    CardRepository dataBase = new CardRepository();
 
     @BeforeEach
-    public void init() {
+    void init() {
         Card card1 = Mockito.mock(Card.class);
         Card card2 = Mockito.mock(Card.class);
         Card card3 = Mockito.mock(Card.class);
@@ -74,7 +70,7 @@ class DataBaseTest {
     }
 
     @AfterEach
-    public void destroy() {
+    void destroy() {
         dataBase.clear();
     }
 }

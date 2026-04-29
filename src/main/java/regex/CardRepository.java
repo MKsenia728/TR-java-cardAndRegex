@@ -5,18 +5,15 @@ import regex.exceptions.NoSuchElement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataBase {
-    private static List<Card> dataBaseCard;
+public class CardRepository {
+    private static final List<Card> dataBaseCard = new ArrayList<>();
 
-    public DataBase() {
-        this.dataBaseCard = new ArrayList<>();
-    }
     public int size() {
         return dataBaseCard.size();
     }
 
     public boolean isEmpty() {
-        return dataBaseCard.size() == 0;
+        return dataBaseCard.isEmpty();
     }
 
     public void add(Card card) {

@@ -2,22 +2,22 @@ package regex;
 
 import java.util.List;
 
-public class main {
+public class CardValidatorApp {
     public static void main(String[] args) {
 
         String fileName = "outputCardData.txt";
-        Service service = new Service(10);
+        CardService service = new CardService(10);
 
         service.createDataBaseCards();
         service.printDataBase();
         service.createListCardInString();
 
-        WriterToFile writerToFile = new WriterToFile();
-        writerToFile.writer(fileName, service.listCardString);
-        ReaderFromFile readerFromFile = new ReaderFromFile();
+        CardFileWriter writerToFile = new CardFileWriter();
+        writerToFile.writer(fileName, service.getListCardString());
+        CardFileReader readerFromFile = new CardFileReader();
         List<String> listStringCardInput = readerFromFile.reader(fileName);
 
-        DataParsing dataParsing = new DataParsing();
+        CardDataParser dataParsing = new CardDataParser();
         dataParsing.parse(listStringCardInput);
         dataParsing.listOutput.forEach(System.out::println);
     }

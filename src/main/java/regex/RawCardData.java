@@ -1,9 +1,7 @@
 package regex;
 
-import lombok.Getter;
 
-@Getter
-public class CardInString {
+public class RawCardData {
 
     public String transCardToString(Card card) {
         String month = (card.getMonth()/10==1) ? String.valueOf(card.getMonth()) : "0" + card.getMonth();

@@ -16,6 +16,7 @@ A small Java project for generating, reading and validating payment card data us
 - Regular Expressions
 - File I/O
 - JUnit
+- Mockito
 
 ## Purpose
 

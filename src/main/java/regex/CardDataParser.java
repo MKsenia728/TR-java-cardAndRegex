@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DataParsing {
+public class CardDataParser {
     List<String> listOutput;
 
-    public DataParsing() {
+    public CardDataParser() {
         this.listOutput = new ArrayList<>();
     }
 
@@ -21,7 +21,13 @@ public class DataParsing {
         System.out.println("Use printf : ");
         for (String str : listInput) {
             Matcher matcher = pattern.matcher(str);
-            listOutput.add(matcher.replaceAll("Номер карты : $1-$2-$3-$4 Имя : $5 Фамилия : $6 CVV : ($7) срок : $8/$9"));
+            listOutput.add(matcher.replaceAll(
+                    "Card number: $1-$2-$3-$4 " +
+                            "First name: $5 " +
+                            "Last name: $6 " +
+                            "CVV: ($7) " +
+                            "Expiry date: $8/$9"
+            ));
             matcher = pattern.matcher(str);
             while (matcher.find()) {
                 int accountP1 = Integer.parseInt(matcher.group(1));
@@ -33,7 +39,7 @@ public class DataParsing {
                 int cvv = Integer.parseInt(matcher.group(7));
                 int month = Integer.parseInt(matcher.group(8));
                 int year = Integer.parseInt(matcher.group(9));
-                System.out.printf("Account:%04d**%04d**%04d*%04d** fullname:%-10s %-15s cvv:(%-3d) card expiry date:%02d/%02d\n",
+                System.out.printf("Account:%04d**%04d**%04d*%04d** full name:%-10s %-15s cvv:(%-3d) card expiry date:%02d/%02d%n",
                         accountP1,accountP2,accountP3,accountP4,firstName,lastName,cvv,month,year);
             }
         }

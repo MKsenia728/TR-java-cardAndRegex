@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReaderFromFile {
+public class CardFileReader {
     public List<String> reader(String fileName) {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             List<String> list = new ArrayList<>();
@@ -15,7 +15,7 @@ public class ReaderFromFile {
             System.out.println("File " + fileName + " is read successful");
             return list;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new UncheckedIOException(e);
         }
     }
 }
